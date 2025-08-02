@@ -4,48 +4,47 @@
     ViewData["Title"] = "Printer List";
 }
 
-<h1>PrinterList</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SKU)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BuildVolume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrinterImage)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SKU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BuildVolume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrinterImage)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container-fluid d-flex justify-content-center align-items-start pt-5 pb-5" style="background-color: transparent;">
+    <div class="w-100 mx-auto shadow-lg p-4" style="background-color: #586a54; color: white; max-width: 1400px; border-radius: 3rem;">
+        <div class="text-center mb-4">
+            <h1 class="fw-bold mb-2" style="color: white;">Printer List</h1>
+        </div>
+        <hr class="border-light mb-4 w-100" />
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 text-center" style="background-color: #8da387; color: white; border-radius: 2rem; overflow: hidden; border: none;">
+                        <thead>
+                            <tr style="background-color: #3b3a3b; color: white;">
+                                <th class="rounded-top-start text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayNameFor(model => model.Title)</th>
+                                <th class="text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayNameFor(model => model.SKU)</th>
+                                <th class="text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayNameFor(model => model.Price)</th>
+                                <th class="text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayNameFor(model => model.BuildVolume)</th>
+                                <th class="rounded-top-end text-center" style="border: none; padding: 0.75rem 1rem;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @{
+                            var rowColors = new[] { "#8da387", "#a9b9a5" };
+                            int rowIndex = 0;
+                        }
+                        @foreach (var item in Model) {
+                            var bgColor = rowColors[rowIndex % 2];
+                            rowIndex++;
+                        <tr style="background-color: @bgColor; border: none;">
+                            <td class="text-center" style="border: none; padding: 0.75rem 1rem;"><strong>@Html.DisplayFor(modelItem => item.Title)</strong></td>
+                            <td class="text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayFor(modelItem => item.SKU)</td>
+                            <td class="text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayFor(modelItem => item.Price)</td>
+                            <td class="text-center" style="border: none; padding: 0.75rem 1rem;">@Html.DisplayFor(modelItem => item.BuildVolume)</td>
+                            <td class="text-center" style="border: none; padding: 0.75rem 1rem;">
+                                <img src="@item.PrinterImage" alt="Printer Image" class="rounded-3" style="width:120px; height:80px; object-fit:cover; background:#e0e0e0;" />
+                            </td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
